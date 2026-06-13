@@ -1,0 +1,2 @@
+export function localStamp(d=new Date()){return d.toLocaleString('sv-SE',{hour12:false}).replace('T',' ')}
+export function formatAccessLog(i:{timestamp?:Date;result:string;name:string;id:number;role:string;department:string;location:string;reason?:string}){return `[${localStamp(i.timestamp)}] ACCESS ${i.result}\n\nName: ${i.name}\nID Number: ${i.id}\nRole: ${i.role}\nDepartment: ${i.department}\nLocation: ${i.location}${i.reason?`\nReason: ${i.reason}`:''}`}
