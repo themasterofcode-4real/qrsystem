@@ -1,0 +1,2 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+:root{color-scheme:light} body{margin:0}.scan-mask{box-shadow:0 0 0 9999px rgba(0,0,0,.62)}

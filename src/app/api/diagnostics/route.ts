@@ -1,0 +1,3 @@
+export const runtime = 'nodejs';
+import { NextResponse } from 'next/server';import fs from 'fs';import path from 'path';import { dbOk } from '@/lib/db';import { encryptText,decryptText } from '@/lib/crypto';
+export async function GET(){const checks:any={Camera:'CLIENT_CHECK',Speech:'CLIENT_CHECK',Database:'FAIL',Encryption:'FAIL',Email:process.env.RESEND_API_KEY?'PASS':'FAIL',Storage:'FAIL'};try{checks.Database=dbOk()?'PASS':'FAIL'}catch{}try{checks.Encryption=decryptText(encryptText('ok'))==='ok'?'PASS':'FAIL'}catch{}try{fs.accessSync(path.join(process.cwd(),'data'),fs.constants.W_OK);checks.Storage='PASS'}catch{}return NextResponse.json({ok:true,checks});}
